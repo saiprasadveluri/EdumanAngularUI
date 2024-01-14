@@ -42,6 +42,11 @@ import { ShowChalanLinesComponent } from './show-chalan-lines/show-chalan-lines.
 import { FeeReceiptsComponent } from './fee-receipts/fee-receipts.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FeeDefaultersComponent } from './fee-defaulters/fee-defaulters.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +78,8 @@ import {MatTableModule} from '@angular/material/table';
     ShowChalansComponent,
     ManageStudentChallanComponent,
     ShowChalanLinesComponent,
-    FeeReceiptsComponent
+    FeeReceiptsComponent,
+    FeeDefaultersComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +89,10 @@ import {MatTableModule} from '@angular/material/table';
     FormsModule,
     NgbModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    MatInputModule,
+    MatInputModule
 
   ],
   providers: [
@@ -94,6 +103,7 @@ import {MatTableModule} from '@angular/material/table';
     {provide:LoggerhelperService,useClass:LoggerhelperService}
    
   ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { HttpHelper } from './http-helper';
-import { AcdYearDTO, AddStudentInfoDTO, AddStudentLanguageMapDTO, ChalanDTO, ChalanListDTO, FeeChalanCollectionDTO, FeeCollectionReceiptDTO, FeeConcessionDTO, FeeConcessionViewDTO, FeeHeadMasterDTO, FeeMasterDTO, FeeReceiptInfoDTO, FileManagerDTO, FileManagerInputDTO, LanguageMasterDTO, NewUserInfo, OrganizationDTO, PayheadDTO, RoleMasterDTO, StandardDTO, StdSubMapDTO, StuStdMapDTO, StudentChalansInfoDTO, StudentFeeInfoDTO, StudentInfoDTO, StudentLangMapDTO, SubjectDTO, UserDTO, UserInfoDTO, UserOrgMapDTO } from './app-models';
+import { AcdYearDTO, AddStudentInfoDTO, AddStudentLanguageMapDTO, ChalanDTO, ChalanListDTO, FeeChalanCollectionDTO, FeeCollectionReceiptDTO, FeeConcessionDTO, FeeConcessionViewDTO, FeeDefaulterInfoDTO, FeeHeadMasterDTO, FeeMasterDTO, FeeReceiptInfoDTO, FileManagerDTO, FileManagerInputDTO, LanguageMasterDTO, NewUserInfo, OrganizationDTO, PayheadDTO, RoleMasterDTO, StandardDTO, StdSubMapDTO, StuStdMapDTO, StudentChalansInfoDTO, StudentFeeInfoDTO, StudentInfoDTO, StudentLangMapDTO, SubjectDTO, UserDTO, UserInfoDTO, UserOrgMapDTO } from './app-models';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { LoggerhelperService } from './loggerhelper.service';
 import { AddFeeMasterActionEnum, FetchTermFeeTypeEnum } from './app-role-enum.enum';
@@ -347,5 +347,13 @@ public GetFeeReceipts(SelAcdyearId:string, SelStnId:string,StartDate:Date, EndDa
 public GetFeeReceiptDetails(ColId:string):Observable<FeeCollectionReceiptDTO>
 {
   return this.httpHelper.HttpGet<FeeCollectionReceiptDTO>("FeeCollectionReceipt/"+ColId);
+}
+
+public GetDefaultersData(SelStnId:string,SelAcdyearId:string,TermNo:number,OrgId:string):Observable<FeeDefaulterInfoDTO[]>
+{
+  let prms:HttpParams= new HttpParams().append('AcdYearId',SelAcdyearId)
+  .append("StnId",SelStnId,).append("TermNo",TermNo).append("OrgId",OrgId);
+  return this.httpHelper.HttpGet<FeeDefaulterInfoDTO[]>("FeeDefaultersData",prms);
+
 }
 }

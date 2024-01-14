@@ -11,8 +11,8 @@ export class HttpHelper {
     constructor(private http:HttpClient,private logger:LoggerhelperService)
     {
         //this.baseAddress="http://api.bluegreenvsb.in/api/";
-        //this.baseAddress="https://localhost:5000/API/";
-        this.baseAddress="https://edumanapi.azurewebsites.net/API/"
+        this.baseAddress="http://localhost:5000/API/";
+        //this.baseAddress="https://edumanapi.azurewebsites.net/API/"
         
     }
 

@@ -1,0 +1,51 @@
+<h3>Fee Defaulters</h3>
+<form [formGroup]="frmGroup">
+
+
+<div mat-form-field>
+    <mat-label>Acd Year: </mat-label>
+    <mat-select formControlName="AcdYear">
+        <mat-option *ngFor="let acd of AcdYearDTOArray" [value]="acd.acdId">
+            {{acd.acdText}}
+        </mat-option>
+    </mat-select>
+</div>
+<div mat-form-field>
+    <mat-label>Standard: </mat-label>
+    <mat-select formControlName="SelStd">
+        <mat-option *ngFor="let stn of StandardDTOArrya" [value]="stn.stdId">
+            {{stn.stdName}}
+        </mat-option>
+    </mat-select>
+</div>
+<div mat-form-field>
+    <mat-label>Term: </mat-label>
+    <mat-select formControlName="SelTerm">
+        <mat-option *ngFor="let trm of TermsArray" [value]="trm">
+            {{trm}}
+        </mat-option>
+    </mat-select>
+</div>
+<div mat-form-field>
+    <button mat-raised-button (click)="GetDefaultersData()">Fetch</button>
+</div>
+</form>
+<div>
+    Defaulters List:
+</div>
+<div *ngIf="FeeDefaulters.length>0">
+
+
+<table mat-table [dataSource]="FeeDefaulters">
+<tr mat-header-row *matHeaderRowDef="columns">
+
+</tr>
+<tr mat-row *matRowDef="let row; columns:columns"></tr>
+<ng-container matColumnDef="stn">
+<th mat-header-cell *matHeaderCellDef>Stnadard</th>
+<td mat-cell *matCellDef="let FeeDefaulter">
+{{FeeDefaulter.stn}}
+</td>    
+</ng-container>
+</table>
+</div>

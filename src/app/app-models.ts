@@ -433,4 +433,16 @@ export  class UserDTO
         public chlnNumber:string|undefined;
     }
 
+    export class FeeDefaulterInfoDTO
+    {
+        public stuName:string|undefined;
+        public regdNo :string|undefined;
+        public stn:string|undefined;
+        public amount:number=0;
+        public headName:string|undefined;
+        public term:number=0;
+        public feeAmt :number=0
+        public concession:number=0;
+    }
+
     

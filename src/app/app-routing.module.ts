@@ -32,6 +32,7 @@ import { ShowChalansComponent } from './show-chalans/show-chalans.component';
 import { ManageStudentChallanComponent } from './manage-student-challan/manage-student-challan.component';
 import { ShowChalanLinesComponent } from './show-chalan-lines/show-chalan-lines.component';
 import { FeeReceiptsComponent } from './fee-receipts/fee-receipts.component';
+import { FeeDefaultersComponent } from './fee-defaulters/fee-defaulters.component';
 
 const routes: Routes = [
   
@@ -59,7 +60,8 @@ const routes: Routes = [
     {path:"ShowChalans",component:ShowChalansComponent},
     {path:"ShowChalanLines/:chlnId",component:ShowChalanLinesComponent},
     {path:"ManageStudentChallan",component:ManageStudentChallanComponent},
-    {path:"FeeReceipts",component:FeeReceiptsComponent}
+    {path:"FeeReceipts",component:FeeReceiptsComponent},
+    {path:"FeeDefaulters",component:FeeDefaultersComponent}
   ]},  
   {path:"SiteAdminHome",component:SiteAdminHomeComponent,children:[
     {path:'Organization',component:OrganizationComponent,canActivate:[SiteGuardGuard],data:{
