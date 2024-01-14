@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <select formControlName="OrgSite" class="form-control" name="OrgSite" [(ngModel)]="CurMap" (ngModelChange)="onSelectChange($event)">
+                    <option *ngFor="let org of CurRecs">{{org.orgName}}-{{org.roleName}}</option>
+                </select>
+            </div>
+            <div>
+                <button (click)="MoveToHome()">Enter</button>
+                <button (click)="AddOrgnization()">Add Organization</button>
+                <button (click)="ManageOrgnization()">Manage Organizations</button>
+            </div>
+            
+        </div>
+    </div>
+    
+</form>
+

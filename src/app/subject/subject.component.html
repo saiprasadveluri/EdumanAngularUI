@@ -1,0 +1,67 @@
+<form [formGroup]="FrmGroup!">
+    <div class="form-group">
+      <label for="" class="form-label"> New Subject Name:</label>
+     <input type="text" formControlName="subName" id="subName" class = "form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="" class="form-label"> New Subject Code:</label>
+       <input type="text" formControlName="subCode" id="subCode" class = "form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="" class="form-label"> Is language:</label>
+       <input type="checkbox" formControlName="isLanguage" id="isLanguage" />
+      </div>
+      <div class="form-group">
+        <label for="" class="form-label"> Lang Ordinal:</label>
+       <input type="number" formControlName="langOrdinal" id="langOrdinal" class = "form-control" min="1"/>
+      </div>
+    <div class="form-group">
+      <button (click)="AddRecord()" class = "form-control">Add</button>    
+   </div>
+  </form>
+
+<div class="table-responsive">
+    <table style="width:100%" id="dataTable" class="table table-bordered">
+        <thead>
+            <tr>                
+                <th>
+                    Subject Name
+                </th>
+                <th>
+                    Subject Code
+                </th>  
+                <th>
+                    Islanguage
+                </th> 
+                <th>
+                    LanguageOrdinal
+                </th>             
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>            
+                <tr *ngFor="let itm of OrgSubjectdArray">                  
+                    <td>
+                        {{itm.subjectName}}
+                    </td>
+                    <td>
+                        {{itm.subCode}}
+                    </td>   
+                    <td>
+                        {{itm.isLanguage==1?'Yes':'No'}}
+                    </td>
+                    <td>
+                        {{itm.langOrdinal}}
+                    </td>                   
+                    <td>                        
+                        <button (click)="OnEdit(itm)">Edit</button>                        
+                        <button (click)="OnDelete(itm.subId!)">Delete</button>
+                        
+                    </td>
+                </tr>           
+        </tbody>
+    </table>
+    
+</div>

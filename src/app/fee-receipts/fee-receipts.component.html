@@ -1,0 +1,233 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Payment Receipts
+        </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="frmGroup">
+            <table id="formTable" style="width:100%">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label> Acd Year:</label>
+                            <select formControlName="AcdYear" class="form-control">
+                                @for (itm of AcdYearDTOArray; track itm.acdId)
+                                {
+                                  <option [ngValue]="itm.acdId">{{itm.acdText}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label> Class:</label>
+                            <select formControlName="SelStd" class="form-control">
+                                @for (itm of StandardDTOArrya; track itm.stdId)
+                                {
+                                  <option [ngValue]="itm.stdId">{{itm.stdName}}</option>
+                                }
+                            </select>
+                        </div>                        
+                        <div class="form-group">
+                            <label> From Date:</label>
+                            <input type="date" formControlName="Startdate" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label> To Date:</label>
+                            <input type="date" formControlName="EndDate" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button (click)="PopulateReceipts()">Fetch Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>    
+        </form>
+        
+            <mat-table [dataSource]="FeeReceiptInfoDTOArray">                
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
+                </mat-table>
+        
+        <div>
+            <table style="width:100%" id="MyTbl">
+                <thead>
+                    <tr>
+                        <th>
+                            ColDate
+                        </th>
+                        <th>
+                            ChlnNumber
+                        </th>
+                        <th>
+                            StuRegdNo
+                        </th>
+                        <th>
+                            Standard
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                        <th>
+                            StuName
+                        </th>
+                        <th>
+                            PayType
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(itm of FeeReceiptInfoDTOArray; track itm.feeColId)
+                    {
+                        <tr>
+                            <td>
+                                {{itm.colDate}}
+                            </td>
+                            <td>
+                                {{itm.chlnNumber}}
+                            </td>
+                            <td>
+                                {{itm.stuRegdNo}}
+                            </td>
+                            <td>
+                                {{itm.standard}}
+                            </td>
+                            <td>
+                                {{itm.amount}}
+                            </td>
+                            <td>
+                                {{itm.stuName}}
+                            </td>
+                            <td>
+                                {{itm.payType}}
+                            </td>
+                            <td>
+                                <input type="button" value="Details" (click)="ShowDetails(itm.feeColId!);" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+  </div>
+</div>
+<div class="card shadow mb-4" id="SelectorToPrint">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            Fee Collection receipt
+        </h6>
+    </div>
+    <div class="card-body">
+        @if (FeeCollectionReceiptDTOObj !=null)
+        {
+            <div>
+                <table style="width:100%">
+                    <tr>
+                        <td colspan="4">
+                            <img src='data:image/jpg;base64,@Model.LogoBase64' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Name:
+                        </td>
+                        <td>
+                            {{FeeCollectionReceiptDTOObj.name}}
+                        </td>
+                        <td>
+                            Reg No:
+                        </td>
+                        <td>
+                            {{FeeCollectionReceiptDTOObj.regdNo}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            pay Type:
+                        </td>
+                        <td>
+                            {{FeeCollectionReceiptDTOObj.payType}}
+                        </td>
+                        <td>
+                            Payment date:
+                        </td>
+                        <td>
+                            {{FeeCollectionReceiptDTOObj.paydate}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Pay Notes:
+                        </td>
+                        <td colspan="3">
+                            {{FeeCollectionReceiptDTOObj.notes}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <table style="width:100%" class="table table-bordered">
+                                <tr>
+                                    <th>
+                                        Head
+                                    </th>
+                                    <th>
+                                        Term
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                </tr>
+                                @for(itm of FeeCollectionReceiptDTOObj.lines; track itm)
+                                {
+                                    <tr>
+                                        <td>
+                                            {{itm.feeHeadName}}
+                                        </td>
+                                        <td>
+                                            {{itm.termNo}}
+                                        </td>
+                                        <td>
+                                            {{itm.amt}}
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align:center">
+                            Total Amount: 
+                            <br />
+                            In Words: 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <table style="width:100%">
+                                <tr>
+                                    <td>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <span>Parent's Signature</span>
+                                    </td>
+                                    <td style="text-align:right">
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <span>Cashier's Signature</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }        
+    </div>
+</div>

@@ -1,0 +1,181 @@
+<form [formGroup]="frmGroup">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <!-- Page Heading -->
+            <h6 class="m-0 font-weight-bold text-primary">
+                Info:
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label> Acd Year:</label>
+                <select formControlName="AcdYear" class="form-control">
+                    @for (itm of AcdYearDTOArray; track itm.acdId)
+                    {
+                      <option [ngValue]="itm.acdId">{{itm.acdText}}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label> Term Number:</label>
+                <select formControlName="SelTerms" class="form-control">
+                    @for (itm of TermsArray; track itm)
+                    {
+                      <option [ngValue]="itm">{{itm}}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label> Class:</label>
+                <select formControlName="SelStd" class="form-control" (change)="OnSelectedStandardChange()">
+                    @for (itm of StandardDTOArrya; track itm.stdId)
+                    {
+                      <option [ngValue]="itm.stdId">{{itm.stdName}}</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <!-- Page Heading -->
+            <h6 class="m-0 font-weight-bold text-primary">
+                Student Selection:
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label> Student</label>
+                <select formControlName="SelStudent" class="form-control">
+                    @for (itm of StudentInfoDTOArray; track itm.mapId)
+                    {
+                      <option [ngValue]="itm.mapId">{{itm.fName}}-{{itm.regdNo}}</option>
+                    }
+                </select>                
+            </div>
+            <div class="form-group">
+                <button (click)="GetStudentChalanInfo()" class="form-control">Get Student Chalan Info</button>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Generate Chalan
+            </h6>
+            <div>
+                <button 
+                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                        (click)="GetStudentChalanInfo()"
+                        >
+                    Add Chalan
+                    <i class="fas fa-address-card fa-sm text-white-50"></i>
+
+                </button>
+            </div>
+        </div>
+
+        <div class="card-body" *ngIf="vmObj!=null">
+            <div class="table-responsive">
+                <table style="width:100%;">
+                    <tr>
+                        <td>
+                            <table style="width:100%" id="dataTable" class="table table-bordered">
+                                <tr>
+                                    <td>
+                                        Name:
+                                    </td>
+                                    <td>
+                                        {{vmObj!.name}}
+                                    </td>
+                                    <td>
+                                        Regd No:
+                                    </td>
+                                    <td>
+                                       {{vmObj!.regdNo}}
+                                    </td>
+                                    <td>
+                                        Class:
+                                    </td>
+                                    <td>
+                                        {{vmObj!.stndardname}}
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <table style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Select
+                                                    </th>
+                                                    <th>
+                                                        Head Name:
+                                                    </th>
+                                                    <th>
+                                                        Term No
+                                                    </th>
+                                                    <th>
+                                                        Total Amount
+                                                    </th>
+                                                    <th>
+                                                        Concession
+                                                    </th>
+                                                    <th>
+                                                        Paid Amout
+                                                    </th>
+                                                    <th>
+                                                        Due
+                                                    </th>
+                                                    <th>
+                                                        Amount To Collect
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container [formGroup]="frmChln!">
+                                                    <ng-container [formGroup]="sectionGrp!" *ngFor="let item of [].constructor(LineSize); let i = index">
+                                                        <tr formGroupName="{{'curRow_'+i}}">
+                                                            <td>
+                                                                <input type="checkbox" formControlName="Selection"/>
+                                                            </td>
+                                                            <td>
+                                                                {{vmObj!.info[i].hN}}
+                                                            </td>
+                                                            <td>
+                                                                {{vmObj!.info[i].termNo}}
+                                                            </td>
+                                                            <td>
+                                                                {{vmObj!.info[i].totAmt}}
+                                                            </td>
+                                                            <td>
+                                                               {{vmObj!.info[i].concession}}
+                                                            </td>
+                                                            <td>
+                                                                {{vmObj!.info[i].paid}}
+                                                             </td>
+                                                             <td>
+                                                                {{vmObj!.info[i].due}}
+                                                             </td>
+                                                            <td>
+                                                                <input type="number" min="0" formControlName="Amount">
+                                                            </td>
+                                                        </tr>  
+                                                    </ng-container>     
+                                                </ng-container>                                                
+                                            </tbody>
+                                        </table>
+                                        <div class="form-group">
+                                            <button (click)="AddStudentChalanInfo()">Add Challan</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </div>
+</form>

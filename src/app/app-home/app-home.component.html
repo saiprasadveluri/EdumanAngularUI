@@ -1,0 +1,773 @@
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+            id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+               href="dashboard.html">
+                <div class="sidebar-brand-text mx-3">
+                    <img src="/assets/img/logo.png" alt="My Exam Board" class="img-fluid" />
+                </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0" />
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+
+            <!-- Nav Item - Enquiry Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#enquiry"
+                   aria-expanded="true"
+                   aria-controls="enquiry">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                    <span>Enquiry</span>
+                </a>
+                <div id="enquiry"
+                     class="collapse"
+                     aria-labelledby="headingTwo"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Enquiries</h6>
+                        <a class="collapse-item" routerLink="Enquiries">Enquiries</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Organisations Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#Organisations"
+                   aria-expanded="true"
+                   aria-controls="Organisations">
+                    <i class="fas fa-fw fa-briefcase"></i>
+                    <span>Organisations</span>
+                </a>
+                <div id="Organisations"
+                     class="collapse"
+                     aria-labelledby="headingTwo"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Organisations:</h6>
+                        <a class="collapse-item" routerLink="/Home/Organization">Manage</a>
+                        <a class="collapse-item" routerLink="/Home/AddOrganization">
+                            Add
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#Languages"
+                   aria-expanded="true"
+                   aria-controls="Languages">
+                    <i class="fas fa-fw fa-briefcase"></i>
+                    <span>Languages</span>
+                </a>
+                <div id="Languages"
+                     class="collapse"
+                     aria-labelledby="headingTwo"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Languages:</h6>
+                        <a class="collapse-item" routerLink="/Home/Language">Language Manage</a>
+                        
+                    </div>
+                </div>
+            </li>
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                User Info
+            </div>
+
+            <!-- Nav Item - Users Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/UserInfo"
+                   data-toggle="collapse"
+                   data-target="#collapseUsers"
+                   aria-expanded="true"
+                   aria-controls="collapseUsers">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Users</span>
+                </a>
+                <div id="collapseUsers"
+                     class="collapse"
+                     aria-labelledby="headingUsers"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Admin:</h6>
+                        <a class="collapse-item" routerLink="/Home/ManageOrgAdmin">Manage Admins</a>
+                        <h6 class="collapse-header">Users:</h6>
+                        <a class="collapse-item" href="/UserInfo/AddUserInfo">Add User</a>
+                        <a class="collapse-item" href="/UserInfo">Manage Users</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
+
+
+            <!-- Nav Item - Exam Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/Exam/Index"
+                   data-toggle="collapse"
+                   data-target="#exam"
+                   aria-expanded="true"
+                   aria-controls="exam">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                    <span>Exam</span>
+                </a>
+                <div id="exam"
+                     class="collapse"
+                     aria-labelledby="exam"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/Exam/Index">View Exam</a>
+                        <a class="collapse-item" href="/Exam/CreateExam">Create Exam</a>
+                        <h6 class="collapse-header">Exam Settings</h6>
+                        <a class="collapse-item" href="/ExamType/Index">Exam Type</a>
+                        <a class="collapse-item" href="/GradeRange/Index">Grade Settings</a>
+
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Chapter Wise Exam Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/ChapterwiseExam/Index"
+                   data-toggle="collapse"
+                   data-target="#chapterwiseexam"
+                   aria-expanded="true"
+                   aria-controls="chapterwiseexam">
+                    <i class="fas fa-fw fa-clipboard"></i>
+                    <span>Chapter Wise exam</span>
+                </a>
+                <div id="chapterwiseexam"
+                     class="collapse"
+                     aria-labelledby="chapterwiseexam"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="/ChapterwiseExam/Index">View Exams</a>
+
+                        <a class="collapse-item" href="/ChapterwiseExam/ShowStandards">Create Exam</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Notification Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/Notification/Inbox"
+                   data-toggle="collapse"
+                   data-target="#notifications"
+                   aria-expanded="true"
+                   aria-controls="notifications">
+                    <i class="fas fa-fw fa-bell"></i>
+                    <span>Notification</span>
+                </a>
+                <div id="notifications"
+                     class="collapse"
+                     aria-labelledby="notifications"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/Notification/Compose">Compose Notification</a>
+                        <a class="collapse-item" href="/Notification/Inbox">Inbox</a>
+                        <a class="collapse-item" href="/Notification/SentItems">Sent Items</a>
+
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - App Distribution Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#appdistribution"
+                   aria-expanded="true"
+                   aria-controls="appdistribution">
+                    <i class="fas fa-fw fa-tablet"></i>
+                    <span>App Distribution</span>
+                </a>
+                <div id="appdistribution"
+                     class="collapse"
+                     aria-labelledby="appdistribution"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">App Distribution</h6>
+                        <a class="collapse-item" href="#">App Distribution</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/SchoolSettings"
+                   data-toggle="collapse"
+                   data-target="#SchoolSettings"
+                   aria-expanded="true"
+                   aria-controls="subjects">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>SchoolSettings</span>
+                </a>
+                <div id="SchoolSettings"
+                     class="collapse"
+                     aria-labelledby="SchoolSettings"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/SchoolSettings">SchoolSettings</a>
+
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Subjects Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/Subject"
+                   data-toggle="collapse"
+                   data-target="#subjects"
+                   aria-expanded="true"
+                   aria-controls="subjects">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Subjects</span>
+                </a>
+                <div id="subjects"
+                     class="collapse"
+                     aria-labelledby="subjects"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" routerLink="OrgSubject">Manage Subjects</a>
+                        
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Standard Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/Standard"
+                   data-toggle="collapse"
+                   data-target="#standard"
+                   aria-expanded="true"
+                   aria-controls="standard">
+                    <i class="fas fa-fw fa-graduation-cap"></i>
+                    <span>Standard</span>
+                </a>
+                <div id="standard"
+                     class="collapse"
+                     aria-labelledby="standard"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" routerLink="/Home/OrgStandard">Manage Standard</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Students Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/Home/AddStudentInfo"
+                   data-toggle="collapse"
+                   data-target="#Students"
+                   aria-expanded="true"
+                   aria-controls="Students">
+                    <i class="fas fa-fw fa-user-graduate"></i>
+                    <span>Students</span>
+                </a>
+                <div id="Students"
+                     class="collapse"
+                     aria-labelledby="Students"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Students</h6>
+                        <a class="collapse-item" routerLink="/Home/AddStudent">Add Students</a>                        
+                        <a class="collapse-item" routerLink="/Home/ManageStudent">Manage Students</a>
+                        <a class="collapse-item" href="/StudentPromotion">Manage Promotion</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Teachers  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/Teacher"
+                   data-toggle="collapse"
+                   data-target="#Teachers"
+                   aria-expanded="true"
+                   aria-controls="Teachers">
+                    <i class="fas fa-fw fa-chalkboard-teacher
+						"></i>
+                    <span>Teachers</span>
+                </a>
+                <div id="Teachers"
+                     class="collapse"
+                     aria-labelledby="Teachers"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/Teacher">Manage Teachers</a>
+                        <a class="collapse-item" href="/Teacher/Upload">Add Teachers</a>
+
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - fee heads  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/FeeHeads"
+                   data-toggle="collapse"
+                   data-target="#feeheads"
+                   aria-expanded="true"
+                   aria-controls="feeheads">
+                    <i class="fas fa-fw fa-comments-dollar"></i>
+                    <span>Fee Heads</span>
+                </a>
+                <div id="feeheads"
+                     class="collapse"
+                     aria-labelledby="feeheads"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" routerLink="/Home/ManageFeeHeads">Manage Feeheads</a>
+
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - fee Arrears  Collapse Menu
+    <li class="nav-item">
+        <a class="nav-link collapsed"
+           href="#"
+           data-toggle="collapse"
+           data-target="#feearrears"
+           aria-expanded="true"
+           aria-controls="feearrears">
+            <i class="fas fa-fw fa-rupee-sign"></i>
+            <span>fee arrears</span>
+        </a>
+        <div id="feearrears"
+             class="collapse"
+             aria-labelledby="feearrears"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">feearrears</h6>
+                <a class="collapse-item" href="#">feearrears</a>
+                <a class="collapse-item" href="#">feearrears</a>
+            </div>
+        </div>
+    </li>-->
+            <!-- Nav Item - Challans  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="/Chalan/ShowChalans"
+                   data-toggle="collapse"
+                   data-target="#Challans"
+                   aria-expanded="true"
+                   aria-controls="Challans">
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Fees</span>
+                </a>
+                <div id="Challans"
+                     class="collapse"
+                     aria-labelledby="Challans"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" routerLink="/Home/ShowChalans">Show Chalns</a>
+                        <a class="collapse-item" routerLink="/Home/ManageChalan">Generate Bulk Chalns</a>
+                        <a class="collapse-item" routerLink="/Home/ManageStudentChallan">Student Chalan</a>
+                        <a class="collapse-item" routerLink="/Home/FeeReceipts">Receipt History</a>
+                        <a class="collapse-item" href="/FeeDefaulters/Index">Fee Defaulters</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Fee Concession  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#feeConcession"
+                   aria-expanded="true"
+                   aria-controls="feeConcession">
+                    <i class="fas fa-fw fa-money-bill-wave"></i>
+                    <span>feeConcession</span>
+                </a>
+                <div id="feeConcession"
+                     class="collapse"
+                     aria-labelledby="feeConcession"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" routerLink="/Home/FeeConcession">Fee Concession</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Online Session  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#onlineSession"
+                   aria-expanded="true"
+                   aria-controls="onlineSession">
+                    <i class="fas fa-fw fa-signal"></i>
+                    <span>onlineSession</span>
+                </a>
+                <div id="onlineSession"
+                     class="collapse"
+                     aria-labelledby="onlineSession"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/OnlineSession/Index">Manage Sessions</a>
+                        <a class="collapse-item" href="/OnlineSessionUrl/Index">Manage Session Urls</a>
+                        <a class="collapse-item" href="/OnlineSessionUrl/AddSessionUrl">Add Session Urls</a>
+                        <a class="collapse-item" href="/OnLineSession/AddOnlineSessionData">Add Sessions</a>
+                        <a class="collapse-item" href="/OnLineSession/OnlineSessionSchedule">Get Session Schdule</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Digital content  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#digitalContent"
+                   aria-expanded="true"
+                   aria-controls="digitalContent">
+                    <i class="fas fa-fw fa-digital-tachograph"></i>
+                    <span>digitalContent</span>
+                </a>
+                <div id="digitalContent"
+                     class="collapse"
+                     aria-labelledby="digitalContent"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/DigitalContent/AddContent">Add Digital Content</a>
+                        <a class="collapse-item" href="/DigitalContent/Index">View Digital Content</a>
+
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Home Work  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#homework"
+                   aria-expanded="true"
+                   aria-controls="homework">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>homework</span>
+                </a>
+                <div id="homework"
+                     class="collapse"
+                     aria-labelledby="homework"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/HomeWork/Index">Manage Homework</a>
+                        <a class="collapse-item" href="/HomeWork/AddHomeworkForm">Add Homework</a>
+
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Assignments  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#assignments"
+                   aria-expanded="true"
+                   aria-controls="assignments">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>assignments</span>
+                </a>
+                <div id="assignments"
+                     class="collapse"
+                     aria-labelledby="assignments"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="/Assignment/Index">Manage Assignment</a>
+                        <a class="collapse-item" href="/Assignment/AddAssignmentForm">Add Assignment</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#timetable"
+                   aria-expanded="true"
+                   aria-controls="timetable">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Time Table</span>
+                </a>
+                <div id="timetable"
+                     class="collapse"
+                     aria-labelledby="timetable"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="/TimeTable/ViewTimetable">View Timetable</a>
+                        <a class="collapse-item" href="/TimeTable/AddTimeTable">Add Timetable</a>
+                        <a class="collapse-item" href="/TeacherTimetable/ViewTimetable">View Teacher Timetable</a>
+                        <a class="collapse-item" href="/TimetableSettings/Index">Timetable Settings</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#Cashier"
+                   aria-expanded="true"
+                   aria-controls="Cashier">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Cashier</span>
+                </a>
+                <div id="Cashier"
+                     class="collapse"
+                     aria-labelledby="Cashier"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="/Cashier/ViewCashiers">View Cashier</a>
+                        <a class="collapse-item" href="/Cashier/AddCashier">Add Cashier</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#HRPayroll"
+                   aria-expanded="true"
+                   aria-controls="HRPayroll">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>HR Payroll</span>
+                </a>
+                <div id="HRPayroll"
+                     class="collapse"
+                     aria-labelledby="HRPayroll"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="/Payhead/ViewPayheads">View Payheads</a>
+                        <a class="collapse-item" href="/Payhead/AddPayhead">Add Payhead</a>
+                        <a class="collapse-item" href="/Payroll/AddpayrollInitial">Add payroll</a>
+                        <a class="collapse-item" href="/Salary/ShowEmpList">Add Salary</a>
+                        <a class="collapse-item" href="/Salary/ShowSalListForm">Approve Salary</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   href="#"
+                   data-toggle="collapse"
+                   data-target="#Expenses"
+                   aria-expanded="true"
+                   aria-controls="Expenses">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Expenses</span>
+                </a>
+                <div id="Expenses"
+                     class="collapse"
+                     aria-labelledby="Expenses"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="/Vendor/ManageVendors">View Vendors</a>
+                        <a class="collapse-item" href="/ExpenseHead/ManageExpenseHead">View Expense Heads</a>
+                        <a class="collapse-item" href="/BankDeatail/ManageBankDetails">Manage Accounts</a>
+                        <a class="collapse-item" href="/Tax/Managetaxes">Manage Taxes</a>
+                        <a class="collapse-item" href="/ServiceOrProduct/ManageServiceOrProduct">Manage ServiceOrProduct</a>
+                        <a class="collapse-item" href="/Bill/ManageBills">Manage Bills</a>
+                        <a class="collapse-item" href="/PettyExpnse/ManageExpenses">Petty Expenses</a>
+                        <a class="collapse-item" href="/Expensereport/GetReport">Expenses report</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop"
+                            class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle"
+                               href="#"
+                               id="searchDropdown"
+                               role="button"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                 aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text"
+                                               class="form-control bg-light border-0 small"
+                                               placeholder="Search for..."
+                                               aria-label="Search"
+                                               aria-describedby="basic-addon2" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle"
+                               href="#"
+                               id="userDropdown"
+                               role="button"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">User Name</span>
+                                <img class="img-profile rounded-circle"
+                                     src="/assets/img/undraw_profile.svg" />
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="index.html">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Home
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    My Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"
+                                   href="#"
+                                   data-toggle="modal"
+                                   data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div>
+                        {{CurUsr!.orgName}}-{{CurUsr!.roleString}}
+                    </div>
+                <router-outlet>
+
+                </router-outlet>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade"
+         id="logoutModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close"
+                            type="button"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">Ã—</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary"
+                            type="button"
+                            data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

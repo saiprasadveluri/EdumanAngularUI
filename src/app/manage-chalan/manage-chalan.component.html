@@ -1,0 +1,479 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Generate Bulk Chalans
+        </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="frmGroup">
+            <table id="formTable" style="width:100%">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label> Acd Year:</label>
+                            <select formControlName="AcdYear" class="form-control">
+                                @for (itm of AcdYearDTOArray; track itm.acdId)
+                                {
+                                  <option [ngValue]="itm.acdId">{{itm.acdText}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label> Class:</label>
+                            <select formControlName="SelStd" class="form-control">
+                                @for (itm of StandardDTOArrya; track itm.stdId)
+                                {
+                                  <option [ngValue]="itm.stdId">{{itm.stdName}}</option>
+                                }
+                            </select>
+                        </div>                        
+                        <div class="form-group">
+                            <label> Term Number:</label>
+                            <select formControlName="SelTerm" class="form-control">
+                                @for (itm of TermsArray; track itm)
+                                {
+                                  <option [ngValue]="itm">{{itm}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button (click)="GenerateBulkChalan()" class="form-control">Generate Bulk Chalans</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>    
+        </form>
+    </div>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Chalans Info
+        </h6>
+    </div>
+    <div class="card-body">
+@for(obj of ChalanVMs; track obj.chlnId)
+{
+<table style="width:100%">
+    <tr>
+        <td>
+            <table style="width:100%;">
+                <tr>
+                    <td>
+                        <table style="width:100%">
+                            <tr>
+                                <td colspan="4">
+                                    Office Copy:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Chln Number:
+                                </td>
+                                <td colspan="3">
+                                    {{obj.chlnNum}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Name:
+                                </td>
+                                <td>
+                                    {{obj.name}}
+                                </td>
+                                <td>
+                                    Regd No:
+                                </td>
+                                <td>
+                                    {{obj.regdNo}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Class:
+                                </td>
+                                <td>
+                                   {{obj.stndardname}}
+                                </td>
+                                <td>
+                                    Date:
+                                </td>
+                                <td>
+                                    {{CurDate}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <table style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Head Name:
+                                                </th>
+                                                <th>
+                                                    Term No
+                                                </th>
+                                                <th>
+                                                    Total Amount
+                                                </th>
+                                                <th>
+                                                    Paid Amout
+                                                </th>
+                                                <th>
+                                                    Due
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for(r of obj.info; track r.fID)                                            
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        {{r.hN}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.termNo}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.totAmt}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.paid}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.due}}
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    
+                </tr>
+                
+            </table>
+        </td>
+        <td>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <table style="width:100%">
+                            <tr>
+                                <td colspan="4">
+                                    Bank Copy:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Chln Number:
+                                </td>
+                                <td colspan="3">
+                                    {{obj.chlnNum}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Name:
+                                </td>
+                                <td>
+                                    {{obj.name}}
+                                </td>
+                                <td>
+                                    Regd No:
+                                </td>
+                                <td>
+                                    {{obj.regdNo}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Class:
+                                </td>
+                                <td>
+                                    {{obj.stndardname}}
+                                </td>
+                                <td>
+                                    Date:
+                                </td>
+                                <td>
+                                    {{CurDate}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Head Name:
+                                                </th>
+                                                <th>
+                                                    Term No
+                                                </th>
+                                                <th>
+                                                    Total Amount
+                                                </th>
+                                                <th>
+                                                    Paid Amout
+                                                </th>
+                                                <th>
+                                                    Due
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (r of obj.info; track r.fID)
+                                            {
+                                                <tr >
+                                                    <td>
+                                                        {{r.hN}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.termNo}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.totAmt}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.paid}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.due}}
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <table style="width:100%">
+                            <tr>
+                                <td colspan="4">
+                                    Parent Copy:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Chln Number:
+                                </td>
+                                <td colspan="3">
+                                    {{obj.chlnNum}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Name:
+                                </td>
+                                <td>
+                                    {{obj.name}}
+                                </td>
+                                <td>
+                                    Regd No:
+                                </td>
+                                <td>
+                                    {{obj.regdNo}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Class:
+                                </td>
+                                <td>
+                                    {{obj.stndardname}}
+                                </td>
+                                <td>
+                                    Date:
+                                </td>
+                                <td>
+                                    {{CurDate}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <table style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Head Name:
+                                                </th>
+                                                <th>
+                                                    Term No
+                                                </th>
+                                                <th>
+                                                    Total Amount
+                                                </th>
+                                                <th>
+                                                    Paid Amout
+                                                </th>
+                                                <th>
+                                                    Due
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (r of obj.info; track r.fID)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        {{r.hN}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.termNo}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.totAmt}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.paid}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.due}}
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table style="width:100%" class="table-bordered">
+                <tr>
+                    <td>
+                        <table style="width:100%">
+                            <tr>
+                                <td colspan="4">
+                                    School Copy:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Chln Number:
+                                </td>
+                                <td colspan="3">
+                                    {{obj.chlnNum}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Name:
+                                </td>
+                                <td>
+                                    {{obj.name}}
+                                </td>
+                                <td>
+                                    Regd No:
+                                </td>
+                                <td>
+                                    {{obj.regdNo}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Class:
+                                </td>
+                                <td>
+                                    {{obj.stndardname}}
+                                </td>
+                                <td>
+                                    Date:
+                                </td>
+                                <td>
+                                    {{CurDate}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Head Name:
+                                                </th>
+                                                <th>
+                                                    Term No
+                                                </th>
+                                                <th>
+                                                    Total Amount
+                                                </th>
+                                                <th>
+                                                    Paid Amout
+                                                </th>
+                                                <th>
+                                                    Due
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for(r  of obj.info;track r)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        {{r.hN}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.termNo}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.totAmt}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.paid}}
+                                                    </td>
+                                                    <td>
+                                                        {{r.due}}
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>                    
+                </tr>                
+            </table>
+        </td>
+    </tr>
+</table>
+<hr />
+<hr />
+}
+    </div>
+</div>

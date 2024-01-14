@@ -1,0 +1,114 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Add New Fee Head
+        </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="frmGroup">
+            <div class="form-group">
+                <label class="form-control"> Fee Head Name:</label>
+                <input type="text" formControlName="FeeHeadName" required class="form-control">
+            </div>
+            <div>
+                <label class="form-control"> Fee Head Type:</label>
+                <select formControlName="FeeHeadType" class="form-control">
+                    <option value="1">
+                        School Level
+                    </option>
+                    <option value="2">
+                        Class Level
+                    </option>
+                    <option value="3">
+                        Student Level
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control"> Fee Terms:</label>
+                <input type="number" formControlName="FeeTerms" required min="1" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <button (click)="AddNewFeeHead()" class="form-control">Add New</button>
+            </div>
+        </form>
+        </div>
+    </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <!-- Page Heading -->
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Manage Fee Heads
+                </h6>
+            </div>
+            <div class="card-body">                
+                    
+                    <table class="table-striped" style="width:100%">
+                        <thead>
+                            <tr>                                
+                                <th>
+                                    Head Name
+                                </th>
+                                <th>
+                                    Terms
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (itm of FeeHeads; track itm.feeHeadId) {
+                                <tr>                                    
+                                    <td>
+                                        {{itm.feeHeadName}}
+                                    </td>
+                                    <td>
+                                        {{itm.terms}}
+                                    </td>
+                                    <td>
+                                        @if(itm.feeType==1)
+                                        {
+                                            School Level
+                                        }
+                                        @else if(itm.feeType == 2)
+                                        {
+                                            Class Level
+                                        }
+                                        @else{
+                                            Student Level
+                                        }                                                                               
+                                    </td>
+                                    <td>
+                                        <button (click)="EditFeeHead(itm.feeHeadId!)">Edit</button>                                        
+                                        <button (click)="DeleteFeeHead(itm.feeHeadId!)">Delete</button>                                        
+                                        @switch (itm.feeType)
+                                        {
+                                            @case (1) {
+                                                <button (click)="ManageSchoolFees(itm.feeHeadId!)">Manage Fee</button>
+                                              }
+                                              @case (2) {
+                                                <button (click)="ManageClassFees(itm.feeHeadId!)">Manage Fee</button>  
+                                              }
+                                              @case (3) {
+                                                <button (click)="ManageStudentFees(itm.feeHeadId!)">Manage Fee</button>  
+                                              }
+                                        }
+                                        
+                                    </td>
+                                </tr>
+                              } @empty {
+                                <li> There are no items. </li>
+                              }
+                        </tbody>
+                    </table>
+               
+            </div>
+        </div>
+

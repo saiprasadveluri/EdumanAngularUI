@@ -1,0 +1,37 @@
+<h3>Manage Languages</h3>
+
+<form [formGroup]="FrmGroup!">
+  <div class="form-group">
+    <label for="" class="form-label"> New Language Name:</label>
+   <input type="text" formControlName="newLangName" id="newLangName" class = "form-control"/>
+  </div>
+  <div class="form-group">
+    <button (click)="AddRecord()" class = "form-control">Add</button> 
+ </div>
+</form>
+
+<div class="table-responsive">
+    <table style="width:100%" id="dataTable" class="table table-bordered">
+        <thead>
+            <tr>                
+                <th>
+                    Lang Name
+                </th>                
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let itm of Langs;index as i">
+               <td>
+                {{itm.languageName}}
+               </td>
+               <td>
+                    <button (click)="OnEdit(itm)">Edit</button>
+                    <button (click)="OnDelete(itm.langId!)">Delete</button>                        
+               </td>  
+            </tr>
+        </tbody>
+    </table>
+  </div>

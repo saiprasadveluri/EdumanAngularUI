@@ -1,0 +1,194 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Fee Conession
+        </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="frmGroup">
+            <table id="formTable" style="width:100%">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label> Acd Year:</label>
+                            <select formControlName="AcdYear" class="form-control">
+                                @for (itm of AcdYearDTOArray; track itm.acdId)
+                                {
+                                  <option [ngValue]="itm.acdId">{{itm.acdText}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label> Class:</label>
+                            <select formControlName="SelStd" class="form-control" (change)="OnSelectedStandardChange()">
+                                @for (itm of StandardDTOArrya; track itm.stdId)
+                                {
+                                  <option [ngValue]="itm.stdId">{{itm.stdName}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label> Student:</label>
+                            <select formControlName="SelStu" class="form-control">
+                                @for (itm of StudentInfoDTOArray; track itm.mapId)
+                                {
+                                  <option [ngValue]="itm.mapId">{{itm.fName}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label> Term Number:</label>
+                            <select formControlName="SelTerm" class="form-control">
+                                @for (itm of TermsArray; track itm)
+                                {
+                                  <option [ngValue]="itm">{{itm}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button (click)="ShowStudentFeeInfo()">Fetch Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>    
+        </form>
+    </div>
+</div>
+
+<div class="card shadow mb-4" *ngIf="FeeConcessionData!=undefined">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Student Concession Data:
+        </h6>
+    </div>
+    <div class="card-body">
+        <table id="formConDataTable" style="width:100%">
+            <tr>                
+                <th>
+                    Head Name
+                </th>
+                <th>
+                    Term
+                </th>
+                <th>
+                    Amount
+                </th>
+                
+                <th>
+                    Notes
+                </th>
+                <th>
+                    Concession Type
+                </th>
+                <th>
+                    Actions
+                </th>                
+            </tr>
+            <ng-container  *ngFor="let info of FeeConcessionData; let k = index">
+                <tr>                
+                    <th>
+                        {{info.feeHeadName}}
+                    </th>
+                    <th>
+                        {{info.termNo}}
+                    </th>
+                    <th>
+                        {{info.amt}}
+                    </th>
+                    <th>
+                        {{info.reason}}
+                    </th>                    
+                    <th>
+                        {{info.concessionTypeText}}
+                    </th>
+                    <th>
+                        <button (click)="RemoveConcession(info.conId!)">Remove</button>
+                    </th>                
+                </tr> 
+            </ng-container>
+        </table>
+    </div>
+</div>
+
+<div class="card shadow mb-4" *ngIf="StudentFeeInfoDTOObj!=undefined">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Add Concession
+        </h6>
+    </div>
+    <div class="card-body">
+            <table id="formConTable" style="width:100%">
+                <tr>
+                    <th>
+                        Select
+                    </th>
+                    <th>
+                        Head Name
+                    </th>
+                    <th>
+                        Term
+                    </th>
+                    <th>
+                        Tot Amount
+                    </th>
+                    <th>
+                        Avl Concession
+                    </th>
+                    <th>
+                        Concession
+                    </th>
+                </tr>
+                    <ng-container [formGroup]="frmConcession!" >
+                        <ng-container [formGroup]="sectionGrp!" *ngFor="let item of [].constructor(LineSize); let i = index">
+                            <tr formGroupName="{{'curRow_'+i}}">
+                                <td>
+                                    <input type="checkbox" formControlName="Selection"/>
+                                </td>
+                                <td>
+                                    {{StudentFeeInfoDTOObj!.lines[i].hn}}
+                                </td>
+                                <td>
+                                    {{StudentFeeInfoDTOObj!.lines[i].termNo}}
+                                </td>
+                                <td>
+                                    {{StudentFeeInfoDTOObj!.lines[i].totAmt}}
+                                </td>
+                                <td>
+                                   {{StudentFeeInfoDTOObj!.lines[i].conAmout}}
+                                </td>
+                                <td>
+                                    <input type="number" min="0" formControlName="Amount">
+                                </td>
+                            </tr>   
+                        </ng-container>
+                        <tr>
+                            <td colspan="6">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label> Reason</label>
+                                                <select formControlName="reason" class="form-control">
+                                                    <option *ngFor="let obj of map" [ngValue]="obj.id"> {{obj.name}} </option>
+                                                    </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Notes</label>
+                                                <input type="text" formControlName="notes" class="form-control"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>                        
+                    </ng-container>                     
+            </table>
+            
+            <div class="form-group">
+                <button (click)="AddConsessions()">Add Consession</button>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<h3>Manage Student Info:</h3>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Student List:
+        </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="FrmGroup!">
+            <div class="form-group">
+                <div *ngIf="AcdYearList!=null">
+                    <label for="acYearId" class="form-label"> Acd Year</label>
+                    <select                        
+                        formControlName="acYearId" class="form-control" name="acYearId">
+                        <option *ngFor="let aYear of AcdYearList" [value]="aYear.acdId">{{aYear.acdText}}</option>
+                    </select>                   
+                </div> 
+            </div>
+            <div class="form-group">
+                <label for="stnId" class="form-label"> Standard</label>
+                <div *ngIf="StnList!=null">
+                    <select 
+                     formControlName="stnId" class="form-control" name="stnId">
+                        <option *ngFor="let stn of StnList" [value]="stn.stdId">{{stn.stdName}}</option>
+                    </select>                   
+                </div> 
+            </div>
+            <div class="form-group">
+                <button (click)="GetStudentList()">Get List</button>
+            </div>
+        </form>
+        <hr/>
+        <table class="table">
+            <tr>
+                <th>
+                    RegdNo
+                </th>
+                <th>
+                    FName
+                </th>
+                <th>
+                    ParentEmail
+                </th>
+                <th>
+                    IsActive
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            <tr *ngFor="let stu of StuInfos">
+                <th>
+                    {{stu.regdNo}}
+                </th>
+                <th>
+                    {{stu.fName}}
+                </th>
+                <th>
+                    {{stu.parentEmail}}
+                </th>
+                <th>
+                    {{stu.isActive==1?"Active":"In-Active"}}
+                </th>
+                <th>
+                    <button (click)="EditStudentInfo(stu.mapId!)">Edit</button>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>

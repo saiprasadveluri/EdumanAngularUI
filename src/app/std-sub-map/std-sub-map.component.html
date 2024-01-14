@@ -1,0 +1,22 @@
+<h3>Manage Subjects</h3>
+<h4>Mapped Subjects:</h4>
+<form [formGroup]="form!" (ngSubmit)="RemoveMap()">
+    <div *ngIf="ExistingMaps.length>0">
+        <div class="form-group" formArrayName="existing" *ngFor="let itm of existingFormArray.controls; let i = index">
+        <input type="checkbox" [formControlName]="i">
+        {{ExistingMaps[i].subName}}
+        </div>
+    </div>
+    <button>Remove</button>
+</form>
+<hr/>
+<h4>Available Subjects</h4>
+<form [formGroup]="form!" (ngSubmit)="AddMap()">
+    <div *ngIf="AvailSubs.length>0">
+        <div class="form-group" formArrayName="available" *ngFor="let itm of availableFormArray.controls; let i = index">
+            <input type="checkbox" [formControlName]="i">
+            {{AvailSubs[i].subjectName}}
+        </div>   
+    </div>
+<button>Add Map</button>
+</form>

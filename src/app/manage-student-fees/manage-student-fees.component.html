@@ -1,0 +1,160 @@
+<form [formGroup]="frmGroup">
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Info:
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label> Acd Year:</label>
+            <select formControlName="AcdYear" class="form-control">
+                @for (itm of AcdYearDTOArray; track itm.acdId)
+                {
+                  <option [ngValue]="itm.acdId">{{itm.acdText}}</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label> Class:</label>
+            <select formControlName="SelStd" class="form-control" (change)="OnSelectedStandardChange()">
+                @for (itm of StandardDTOArrya; track itm.stdId)
+                {
+                  <option [ngValue]="itm.stdId">{{itm.stdName}}</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Student Selection:
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label> Student</label>
+            <select formControlName="SelStudent" class="form-control">
+                @for (itm of StudentInfoDTOArray; track itm.mapId)
+                {
+                  <option [ngValue]="itm.mapId">{{itm.fName}}-{{itm.regdNo}}</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Add Student-Level Fee [{{SelHeadName}}]
+        </h6>
+    </div>
+    <div class="card-body">        
+            <table id="formTable" style="width:100%">
+                <tr>
+                    <td>                       
+                        
+                        <div>
+                            <label> Term:</label>
+                            <select formControlName="FeeTerms" class="form-control">
+                                @for (itm of TermsArray;track itm)
+                                {
+                                  <option [ngValue]="itm">Term-{{itm}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label> Due Month:</label>
+                            <select formControlName="DueMonth" class="form-control">
+                                @for (itm of this.MonthLstArray; track itm)
+                                {
+                                  <option [ngValue]="itm">{{itm}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label> Amount:</label>
+                            <input formControlName="Amount" type="number" min="0" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <button (click)="AddStudentLevelFee()" class="form-control">Add Fee</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+    </div>
+</div>
+</form>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Manage Fee
+        </h6>
+    </div>
+    <div class="card-body">
+        <table class="table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Standard
+                    </th>
+                    <th>
+                        Student Name
+                    </th>
+                    <th>
+                        Term
+                    </th>                    
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Due Month
+                    </th>
+                    <th>
+                        Acd year
+                    </th>
+                    <th>
+                       Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (itm of FeeMasterDTOArray;track itm.termNo)
+                {
+                <tr>  
+                    <td>
+                        {{itm.stnText}}
+                    </td>  
+                    <td>
+                        {{itm.studentDispName}}
+                    </td>                
+                    <td>
+                        {{itm.termNo}}
+                    </td>
+                    <td>
+                        {{itm.amount}}
+                    </td>
+                    <td>
+                        {{itm.dueMonthNo}}
+                    </td>
+                    <td>
+                        {{itm.acdYearText}}
+                    </td>
+                    <td>
+                        <button (click)="EditStudentLevelFee(itm.feeId!)">Edit Fee</button>
+                        <button (click)="DeleteStudentLevelFee(itm.feeId!)">Delete Fee</button>
+                    </td>
+                </tr>
+                }
+                </tbody>
+        </table>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,30 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Edit Orgnization Admin Data
+        </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="FrmGroup!">
+            <div class="form-group">
+                <label for="name" class="form-label"> User Name:</label>
+               <input type="text" formControlName="userName" id="name" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="mobNo" class="form-label"> Mobile</label>
+               <input type="text" formControlName="mobile" id="mobNo" class = "form-control" />
+            </div>
+            <div class="form-group">
+                <label for="emailid" class="form-label"> Email:</label>
+               <input type="email" formControlName="email" id="emailid" class = "form-control"/>
+            </div>
+            
+            <div class="form-group">
+               <button (click)="UpdateRecord()" class = "form-control">Update</button>
+               
+            </div>
+        </form>
+       
+    </div>
+</div>

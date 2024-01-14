@@ -1,0 +1,39 @@
+<form [formGroup]="FrmGroup!">
+    <div class="form-group">
+      <label for="" class="form-label"> New Standard Name:</label>
+     <input type="text" formControlName="stdName" id="stdName" class = "form-control"/>
+    </div>
+    <div class="form-group">
+      <button (click)="AddRecord()" class = "form-control">Add</button>    
+   </div>
+  </form>
+
+<div class="table-responsive">
+    <table style="width:100%" id="dataTable" class="table table-bordered">
+        <thead>
+            <tr>                
+                <th>
+                    Standard Name
+                </th>                
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>            
+                <tr *ngFor="let itm of OrgStandardArray">                  
+                    <td>
+                        {{itm.stdName}}
+                    </td>
+                    
+                    <td>                        
+                        <button (click)="OnEdit(itm)">Edit</button>                        
+                        <button (click)="OnDelete(itm.stdId!)">Delete</button>
+                        <button (click)="ManageSubjects(itm.stdId!)">Map Subjects</button>
+                        
+                    </td>
+                </tr>           
+        </tbody>
+    </table>
+    
+</div>

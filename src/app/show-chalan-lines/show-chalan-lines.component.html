@@ -1,0 +1,294 @@
+<div *ngIf="data!=null">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Chalan Details:
+            </h6>
+        </div>
+        <div class="card-body">
+            <div>
+                <input type="button" value="Print Chalan" (click)="SendtoPrint('SelectorToPrint');" class="form-control" />                
+            </div>
+            <div id="SelectorToPrint" name="SelectorToPrint" style="width:100%">
+                <table class="table">
+                    <tr>
+                        <td style="vertical-align:top;padding:20px">
+                            <table style="width:100%;border:2px dashed black" class=" table table-bordered">
+                                <tr>
+                                    <td>
+                                        <table style="width:100%" class=" table table-bordered">
+                                            <tr>
+                                                <td colspan="4">
+                                                    Office Copy:
+                                                </td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <td colspan="4">
+                                                    <img src='data!:image/jpg;base64,@Model.LogoBase64' />
+                                                </td>
+                                            </tr> -->
+                                            <tr>
+                                                <td>
+                                                    Chln Number:
+                                                </td>
+                                                <td colspan="3">
+                                                    {{data!.chlnNum}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Name:
+                                                </td>
+                                                <td>
+                                                    {{data!.name}}
+                                                </td>
+                                                <td>
+                                                    Regd No:
+                                                </td>
+                                                <td>
+                                                    {{data!.regdNo}}                                               
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Class:
+                                                </td>
+                                                <td>
+                                                    {{data!.stndardname}}                                                
+                                                </td>
+                                                <td>
+                                                    Date:
+                                                </td>
+                                                <td>
+                                                    {{TodayDate}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Head Name:
+                                                                </th>
+                                                                <th>
+                                                                    Term No
+                                                                </th>
+                                                                <th>
+                                                                    Total Amount
+                                                                </th>
+                                                                <th>
+                                                                    Amout To Be Paid
+                                                                </th>
+            
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @for(r of data!.info;track r)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        {{r.hN}}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{r.termNo}}
+                                                                       
+                                                                    </td>
+                                                                    <td>
+                                                                        {{r.totAmt}}
+                                                                       
+                                                                    </td>
+                                                                    <td>
+                                                                        {{r.paid}}
+                                                                       
+                                                                    </td>
+            
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" style="height:100px;">
+                                                    <table style="width:100%;height:100px;">
+                                                        <tr>
+                                                            <td>
+                                                                <hr />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span><b>Total Amount To Pay: {{data!.TotalDue}}  </b></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <b>Authorized Signature</b>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>        
+                            </table>
+                        </td>
+                    </tr>                    
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Pay Chalan:
+            </h6>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="frmGroup">
+                <div class="form-group">
+                    <label> Pay Mode</label>
+                    <select formControlName="payType" class="form-control">
+                        @for(itm2 of map; track itm2.id)
+                        {
+                          <option [ngValue]="itm2.id">{{itm2.name}}</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label> Notes</label>
+                    <input type="text" formControlName="notes" class="form-control"/>
+                        
+                </div>
+                <div class="form-group">
+                    <input type="button" value="Pay Chalan" (click)="PayChalan();" class="form-control" />  
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card shadow mb-4" *ngIf="ColReceiptData!=null">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Pay Receipt:
+            </h6>
+        </div>
+        <div class="card-body">
+            <div>
+                <input type="button" value="Print Receipt" (click)="SendtoPrint('receiptDiv');" class="form-control" />                
+            </div>
+            <div id="receiptDiv">
+                <table style="width:100%">
+                    <tr>
+                        <td colspan="4">
+                            <img src='data:image/jpg;base64,@Model.LogoBase64' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Challan Number:
+                        </td>
+                        <td colspan="2">
+                            {{ColReceiptData!.chlnNumber}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Name:
+                        </td>
+                        <td>
+                            {{ColReceiptData!.name}}
+                        </td>
+                        <td>
+                            Reg No:
+                        </td>
+                        <td>
+                            {{ColReceiptData!.regdNo}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            pay Type:
+                        </td>
+                        <td>
+                            {{ColReceiptData!.payType}}
+                        </td>
+                        <td>
+                            Payment date:
+                        </td>
+                        <td>
+                            {{ColReceiptData!.paydate}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Pay Notes:
+                        </td>
+                        <td colspan="3">
+                            {{ColReceiptData!.notes}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <table style="width:100%" class="table table-bordered">
+                                <tr>
+                                    <th>
+                                        Head
+                                    </th>
+                                    <th>
+                                        Term
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                </tr>
+                                @for(itm of ColReceiptData!.lines;track itm)
+                                {
+                                    <tr>
+                                        <td>
+                                            {{itm.feeHeadName}}
+                                        </td>
+                                        <td>
+                                            {{itm.termNo}}
+                                        </td>
+                                        <td>
+                                            {{itm.amt}}
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align:center">
+                            Total Amount: 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <table style="width:100%">
+                                <tr>
+                                    <td>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <span>Parent's Signature</span>
+                                    </td>
+                                    <td style="text-align:right">
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <span>Cashier's Signature</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

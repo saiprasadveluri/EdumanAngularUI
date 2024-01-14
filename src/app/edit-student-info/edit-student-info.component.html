@@ -1,0 +1,102 @@
+
+  <!-- Tabs content -->
+
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+
+    <li ngbNavItem>
+
+      <a ngbNavLink>General Info</a>
+
+      <ng-template ngbNavContent>
+
+      </ng-template>
+
+    </li>
+
+    <li ngbNavItem>
+      <a ngbNavLink (click)="LanguagesTabClick()">Languages</a>
+      <ng-template ngbNavContent>
+        <h3>Existing Student Languages:</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                    Language Ordinal
+                </th>
+                <th>
+                    Language Name
+                </th>
+                <th>
+                  Action
+                </th>
+              </tr>
+              <tr *ngFor="let lang of StudentLangMaps">
+                <td>
+                  {{lang.langOrdinal}}
+                </td>
+                <td>
+                  {{lang.languageName}}
+                </td>
+                <td>
+                  <button (click)="RemoveLangMap(lang.mapId!)">Remove</button>
+                </td>
+              </tr>
+            </thead>
+          </table>
+          <hr/>
+          <h3>Add Student Languages:</h3>
+            <form [formGroup]="LangFrmGroup" (ngSubmit)="onLangSubmit()">
+              <select
+              class="custom-select mb-3"
+              (change)="SelectOrdinal($event)"
+              formControlName="LangOrdnalNumber"
+              >
+              <option *ngFor="let lng of StdLangSubs" [ngValue]="lng.langOrdinal">
+                {{ lng.subName }}
+              </option>
+            </select>
+
+            <select
+              class="custom-select mb-3"
+              (change)="SelectLang($event)"
+              formControlName="AvailableLanguages"
+              >
+              <option *ngFor="let lng of AllLanguages" [ngValue]="lng.langId">
+                {{ lng.languageName }}
+              </option>
+            </select>
+            <button type="submit" class="btn btn-danger btn-lg btn-block">
+              Add Map
+            </button>
+            </form>
+
+      </ng-template>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink (click)="ImageTabClick()">Images</a>
+      <ng-template ngbNavContent>
+        <form [formGroup]="FrmGroup">       
+        <div class="form-group">
+          <label for="" class="form-label"> Student Image:</label>
+          <img width="100px" height="100px" class="rounded" src="data:{{StuImgMimeType}};base64,{{StuImgBase64String}}" alt="stuImage"/>
+         <input type="file"  name="stuImage" id="stuImage" class = "form-control"  (change)="onStuFileSelected($event)"/>
+      </div>
+      <div class="form-group">
+        <label for="" class="form-label"> Father Image:</label>
+       <input type="file"  name="FatherImg" id="FatherImg" class = "form-control" (change)="onFatherFileSelected($event)"/>
+    </div>
+    <div class="form-group">
+      <label for="" class="form-label"> Mother Image:</label>
+     <input type="file"  id="MotherImg" name="MotherImg" class = "form-control" (change)="onMotherFileSelected($event)"/>
+  </div>
+  <div class="form-group">
+    <button (click)="UploadImages($event)">Save</button>
+</div>
+</form>
+      </ng-template>
+    </li>
+
+  </ul>
+
+  <div [ngbNavOutlet]="nav"></div>
+  

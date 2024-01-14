@@ -1,0 +1,13 @@
+<form [formGroup]="fg">
+    <input type="text" formControlName="ctrlUserName" name="ctrlUserName">
+    <br>
+    <input type="text" formControlName="ctrlUserPwd" name="ctrlUserPwd">
+    <button (click)="VerifyCreds()">Verify Creds</button>
+    <button (click)="SiteAdminLogin()">Login As Site Admin</button>
+    <div *ngIf="CurUserInfo!=null && CurUserInfo!.userOrgMapDTOs!=null">
+        <select formControlName="ctrlOrgSite" class="form-control" name="ctrlOrgSite">
+            <option *ngFor="let org of CurUserInfo!.userOrgMapDTOs!" value="{{org.orgId}}">{{org.orgName}}-{{org.roleName}}</option>
+        </select>
+        <button (click)="LoginUser()">Login</button>
+    </div>    
+</form>

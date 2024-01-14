@@ -1,0 +1,53 @@
+<div class="table-responsive">
+    <table style="width:100%" id="dataTable" class="table table-bordered">
+        <thead>
+            <tr>                
+                <th>
+                    Org Name
+                </th>
+                <th>
+                    Org Address
+                </th>
+                <th>
+                    POC
+                </th>
+                <th>
+                    Mobile
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>            
+                <tr *ngFor="let itm of OrgLst">                  
+                    <td>
+                        {{itm.orgName}}
+                    </td>
+                    <td>
+                        {{itm.orgAddress}}
+                    </td>
+                    <td>
+                        {{itm.orgPOC}}
+                    </td>
+                    <td>
+                        {{ itm.orgMobile}}
+                    </td>
+                    <td>
+                        {{ itm.orgEmail}}
+                    </td>
+                    <td>                        
+                        <button (click)="OnEdit(itm)">Edit</button>                        
+                        <button (click)="OnDelete(itm.orgId)">Delete</button>
+                        
+                    </td>
+                </tr>           
+        </tbody>
+    </table>
+    <div>
+        <button (click)="AddOrg()">Add Organization</button>
+    </div>
+</div>

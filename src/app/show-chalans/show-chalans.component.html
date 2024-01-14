@@ -1,0 +1,91 @@
+<form [formGroup]="frmGroup">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <!-- Page Heading -->
+            <h6 class="m-0 font-weight-bold text-primary">
+                Info:
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label> Acd Year:</label>
+                <select formControlName="AcdYear" class="form-control">
+                    @for(itm of AcdYearDTOArray; track itm)
+                    {
+                      <option [ngValue]="itm.acdId">{{itm.acdText}}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label> Class:</label>
+                <select formControlName="SelStd" class="form-control" (change)="OnSelectedStandardChange()">
+                    @for(itm2 of StandardDTOArrya; track itm2.stdId)
+                    {
+                      <option [ngValue]="itm2.stdId">{{itm2.stdName}}</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <!-- Page Heading -->
+            <h6 class="m-0 font-weight-bold text-primary">
+                Student Selection:
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label> Student</label>
+                <select formControlName="SelStudent" class="form-control">
+                    @for (itm of StudentInfoDTOArray; track itm.mapId)
+                    {
+                      <option [ngValue]="itm.mapId">{{itm.fName}}-{{itm.regdNo}}</option>
+                    }
+                </select>
+                <div class="form-group">
+                    <button (click)="ShowChalans()" class="form-control">Fetch Chalans</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Student Chalan List:
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <table class="table">
+                <tr>
+                    <th>
+                        Chln Number
+                    </th>
+                    <th>
+                        ChlnDate
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                @for(chl of this.ChalanInfoList;track chl.chlId)
+                {
+                    <tr>
+                        <td>
+                            {{chl.chlnNum}}
+                        </td>
+                        <td>
+                            {{chl.chlDate}}
+                        </td>
+                        <td>
+                            <button (click)="ShowChalanLines(chl.chlId!,chl.chlnNum!)">Details</button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

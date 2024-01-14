@@ -1,0 +1,121 @@
+<h3>Add Student Info:</h3>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Page Heading -->
+        <h6 class="m-0 font-weight-bold text-primary">
+            Student Info
+        </h6>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="FrmGroup!">
+            <div class="form-group">
+                <div *ngIf="AcdYearList!=null">
+                    <label for="acYearId" class="form-label"> Acd Year</label>
+                    <select                        
+                        formControlName="acYearId" class="form-control" name="acYearId">
+                        <option *ngFor="let aYear of AcdYearList" [value]="aYear.acdId">{{aYear.acdText}}</option>
+                    </select>                   
+                </div> 
+            </div>
+            <div class="form-group">
+                <label for="stnId" class="form-label"> Standard</label>
+                <div *ngIf="StnList!=null">
+                    <select 
+                        #selAcd
+                        (change)='onStandardSel(selAcd.value)'
+                     formControlName="stnId" class="form-control" name="stnId">
+                        <option *ngFor="let stn of StnList" [value]="stn.stdId">{{stn.stdName}}</option>
+                    </select>                   
+                </div> 
+            </div>
+            <div class="form-group">
+                <label for="regdNo" class="form-label"> regdNo</label>
+               <input type="text" formControlName="regdNo" id="regdNo" class = "form-control" />
+            </div>
+            <div class="form-group">
+                <label for="fName" class="form-label"> fName:</label>
+               <input type="text" formControlName="fName" id="fName" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="mName" class="form-label"> mName:</label>
+               <input type="text" formControlName="mName" id="mName" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="lName" class="form-label"> lName:</label>
+               <input type="text" formControlName="lName" id="lName" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="dOBirth" class="form-label"> dOBirth:</label>
+               <input type="date" formControlName="dOBirth" id="dOBirth" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="resAddress" class="form-label"> resAddress:</label>
+               <input type="text" formControlName="resAddress" id="resAddress" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="fatherName" class="form-label"> fatherName:</label>
+               <input type="text" formControlName="fatherName" id="fatherName" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="motherName" class="form-label"> motherName:</label>
+               <input type="text" formControlName="motherName" id="motherName" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="fatherMobile" class="form-label"> fatherMobile:</label>
+               <input type="text" formControlName="fatherMobile" id="fatherMobile" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="gender" class="form-label"> Gender:</label>
+                <select formControlName="gender" id="gender" class = "form-control">
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                        <option value="NUTRAL">Nutral</option>
+                </select>               
+            </div>
+            <div class="form-group">
+                <label for="bloodGroup" class="form-label"> bloodGroup:</label>
+               <input type="text" formControlName="bloodGroup" id="bloodGroup" class = "form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="parentEmail" class="form-label"> parentEmail:</label>
+               <input type="email" formControlName="parentEmail" id="parentEmail" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="aadharNo" class="form-label"> aadharNo:</label>
+               <input type="text" formControlName="aadharNo" id="aadharNo" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="cast" class="form-label"> cast:</label>
+               <input type="text" formControlName="cast" id="cast" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="schoolAdmNo" class="form-label"> schoolAdmNo:</label>
+               <input type="text" formControlName="schoolAdmNo" id="schoolAdmNo" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="dOAdmission" class="form-label"> schoolAdmNo:</label>
+               <input type="date" formControlName="dOAdmission" id="dOAdmission" class = "form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="isActive" class="form-label"> isActive:</label>
+               <input type="checkbox" formControlName="isActive" id="isActive"/>
+            </div>
+
+            <div class="form-group" *ngFor="let item of [].constructor(NumberOfLangs); let j = index">
+                
+                    <label for="acYearId" class="form-label"> Language {{j+1}}</label>
+                    <select                        
+                        formControlName="lang_{{j}}" class="form-control" name="lang">
+                        <option *ngFor="let curlang of AllLangList" [value]="curlang.langId">{{curlang.languageName}}</option>
+                    </select>                   
+               
+            </div>
+            <div class="form-group">
+               <button (click)="AddStudent()" class = "form-control">Add</button>
+               
+            </div>
+        </form>
+       
+    </div>
+</div>
