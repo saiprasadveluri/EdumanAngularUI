@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +47,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FeeDefaultersComponent } from './fee-defaulters/fee-defaulters.component';
+import { AppConfigService } from './app-config.service';
+import { HttpHelper } from './http-helper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,11 +99,16 @@ import { FeeDefaultersComponent } from './fee-defaulters/fee-defaulters.componen
   ],
   providers: [
     HttpClient,
-    {provide:DbAccessServiceService,useClass:DbAccessServiceService,deps:[HttpClient,LoggerhelperService]},
+    {provide : APP_INITIALIZER,multi : true, deps : [AppConfigService],
+      useFactory : (appConfigService : AppConfigService) =>  () => appConfigService.loadAppConfig()
+    },
+    {provide:HttpHelper,useClass:HttpHelper,deps:[HttpClient,LoggerhelperService,AppConfigService]},
+    {provide:DbAccessServiceService,useClass:DbAccessServiceService,deps:[HttpHelper]},
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide:SiteGuardGuard,useClass:SiteGuardGuard},
-    {provide:LoggerhelperService,useClass:LoggerhelperService}
-   
+    {provide:LoggerhelperService,useClass:LoggerhelperService},
+    {provide:AppConfigService,useClass:AppConfigService,deps:[HttpClient]}
+     
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

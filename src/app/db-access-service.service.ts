@@ -7,15 +7,16 @@ import { AcdYearDTO, AddStudentInfoDTO, AddStudentLanguageMapDTO, ChalanDTO, Cha
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { LoggerhelperService } from './loggerhelper.service';
 import { AddFeeMasterActionEnum, FetchTermFeeTypeEnum } from './app-role-enum.enum';
+import { AppConfigService } from './app-config.service';
 @Injectable({
   providedIn: 'root'
 })
 export class DbAccessServiceService {
-  httpHelper:HttpHelper;
+  //httpHelper:HttpHelper;
  // accessToken:string|null;
-  constructor(private http:HttpClient,private logger:LoggerhelperService ) {
-    
-    this.httpHelper=new HttpHelper(http,logger);
+  constructor(private httpHelper:HttpHelper)//private http:HttpClient,private logger:LoggerhelperService,private CfgSrv:AppConfigService ) 
+  {
+    //this.httpHelper=new HttpHelper(http,logger,CfgSrv);
    }
 
    VerifyCreds(Un:string,pwd:string):Observable<NewUserInfo>

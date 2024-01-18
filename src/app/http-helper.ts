@@ -1,19 +1,19 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams } from "@angular/common/http";
 import {Observable, catchError, of, throwError} from 'rxjs';
 import { LoggerhelperService } from "./loggerhelper.service";
+import { AppConfigService } from "./app-config.service";
 
 //declare function ShowMessageDialog(msg:any):any;
 //declare function HideMessageDialog():any;
 export class HttpHelper {
-    baseAddress:string;
+    baseAddress:string|undefined;
 
     ComHeader:HttpHeaders|undefined;
-    constructor(private http:HttpClient,private logger:LoggerhelperService)
+    constructor(private http:HttpClient,private logger:LoggerhelperService,private cfgSrv:AppConfigService)
     {
         //this.baseAddress="http://api.bluegreenvsb.in/api/";
-        this.baseAddress="http://localhost:5000/API/";
-        //this.baseAddress="https://edumanapi.azurewebsites.net/API/"
-        
+        //this.baseAddress="http://localhost:5000/API/";
+        //this.baseAddress="https://edumanapi.azurewebsites.net/API/"        
     }
 
     public AppendHeader(name:string,value:string)
@@ -23,6 +23,7 @@ export class HttpHelper {
 
     PrepareHeaders()
     {
+        this.baseAddress=this.cfgSrv.apiBaseUrl;
         this.ComHeader=new HttpHeaders();
         let accessToken=localStorage.getItem("AuthToken");
         if(accessToken!=undefined)
@@ -30,7 +31,8 @@ export class HttpHelper {
             this.ComHeader= this.ComHeader.append("Authorization","Bearer "+accessToken);
            
         }
-        console.log("Access Token "+accessToken);        
+        console.log("Access Token "+accessToken); 
+        console.log("base Address: "+this.baseAddress);      
     }
 
     HttpGet<T>(ctrlName:string,prms?:HttpParams):Observable<T>{
