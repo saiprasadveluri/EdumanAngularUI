@@ -10,7 +10,7 @@ import { EditOrganizationComponent } from './edit-organization/edit-organization
 import { AddOrganizationComponent } from './add-organization/add-organization.component';
 import { OrgAdminManageComponent } from './org-admin-manage/org-admin-manage.component';
 import { OrgAdminEditComponent } from './org-admin-edit/org-admin-edit.component';
-import { SiteGuardGuard } from './site-guard.guard';
+
 import { AppRoleEnum } from './app-role-enum.enum';
 import { ErrorViewComponent } from './error-view/error-view.component';
 import { AcdYearManageComponent } from './acd-year-manage/acd-year-manage.component';
@@ -33,6 +33,7 @@ import { ManageStudentChallanComponent } from './manage-student-challan/manage-s
 import { ShowChalanLinesComponent } from './show-chalan-lines/show-chalan-lines.component';
 import { FeeReceiptsComponent } from './fee-receipts/fee-receipts.component';
 import { FeeDefaultersComponent } from './fee-defaulters/fee-defaulters.component';
+import { authGuard } from './site-guard.guard';
 
 const routes: Routes = [
   
@@ -64,7 +65,7 @@ const routes: Routes = [
     {path:"FeeDefaulters",component:FeeDefaultersComponent}
   ]},  
   {path:"SiteAdminHome",component:SiteAdminHomeComponent,children:[
-    {path:'Organization',component:OrganizationComponent,canActivate:[SiteGuardGuard],data:{
+    {path:'Organization',component:OrganizationComponent,canActivate:[authGuard],data:{
       roles: [
         AppRoleEnum.SITE_ADMIN
       ]

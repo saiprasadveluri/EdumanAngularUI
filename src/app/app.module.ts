@@ -16,7 +16,7 @@ import { EditOrganizationComponent } from './edit-organization/edit-organization
 import { AddOrganizationComponent } from './add-organization/add-organization.component';
 import { OrgAdminManageComponent } from './org-admin-manage/org-admin-manage.component';
 import { OrgAdminEditComponent } from './org-admin-edit/org-admin-edit.component';
-import { SiteGuardGuard } from './site-guard.guard';
+
 import { ErrorViewComponent } from './error-view/error-view.component';
 import { GlobalErrorHandlerService } from './global-error-handler.service';
 import { AcdYearManageComponent } from './acd-year-manage/acd-year-manage.component';
@@ -45,6 +45,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FeeDefaultersComponent } from './fee-defaulters/fee-defaulters.component';
 
@@ -96,15 +97,16 @@ import { EMPTY, Observable } from 'rxjs';
     MatTableModule,
     MatSelectModule,
     MatInputModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
 
   ],
   providers: [
     HttpClient,
     {provide:HttpHelper,useClass:HttpHelper,deps:[HttpClient,LoggerhelperService]},
     {provide:DbAccessServiceService,useClass:DbAccessServiceService,deps:[HttpHelper]},
-    {provide: APP_BASE_HREF, useValue: '/'},
-    {provide:SiteGuardGuard,useClass:SiteGuardGuard},
+    {provide: APP_BASE_HREF, useValue: '/'},    
     {provide:LoggerhelperService,useClass:LoggerhelperService},
     
     {

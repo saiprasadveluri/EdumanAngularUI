@@ -110,7 +110,7 @@ export class HttpHelper {
             }));
     }
 
-    loadAppConfig()
+  loadAppConfig()
   {
     let appSettingFilePath="";
     console.log('from LoadCOnfig');

@@ -55,9 +55,9 @@
                     <td>
                         {{itm.langOrdinal}}
                     </td>                   
-                    <td>                        
-                        <button (click)="OnEdit(itm)">Edit</button>                        
-                        <button (click)="OnDelete(itm.subId!)">Delete</button>
+                    <td>         
+                        <button mat-icon-button color="accent" (click)="OnEdit(itm)" ><mat-icon>edit</mat-icon></button>               
+                        <button mat-icon-button color="accent" (click)="OnDelete(itm.subId!)" ><mat-icon>delete</mat-icon></button>
                         
                     </td>
                 </tr>           
