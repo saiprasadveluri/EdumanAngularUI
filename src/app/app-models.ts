@@ -445,4 +445,8 @@ export  class UserDTO
         public concession:number=0;
     }
 
+    export class ApiUrlObj {
+        apiBaseUrl?: string;
+       }
+
     

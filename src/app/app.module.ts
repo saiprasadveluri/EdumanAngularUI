@@ -8,7 +8,7 @@ import { AppHomeComponent } from './app-home/app-home.component';
 import { OrgSelectionComponent } from './org-selection/org-selection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DbAccessServiceService } from './db-access-service.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { EnquiriesComponent } from './enquiries/enquiries.component';
 import { OrganizationComponent } from './organization/organization.component';
@@ -47,8 +47,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FeeDefaultersComponent } from './fee-defaulters/fee-defaulters.component';
-import { AppConfigService } from './app-config.service';
+
 import { HttpHelper } from './http-helper';
+import { AddAuthTokenInterceptor } from './add-auth-token-interceptor';
+import { EMPTY, Observable } from 'rxjs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,18 +101,21 @@ import { HttpHelper } from './http-helper';
   ],
   providers: [
     HttpClient,
-    {provide : APP_INITIALIZER,multi : true, deps : [AppConfigService],
-      useFactory : (appConfigService : AppConfigService) =>  () => appConfigService.loadAppConfig()
-    },
-    {provide:HttpHelper,useClass:HttpHelper,deps:[HttpClient,LoggerhelperService,AppConfigService]},
+    {provide:HttpHelper,useClass:HttpHelper,deps:[HttpClient,LoggerhelperService]},
     {provide:DbAccessServiceService,useClass:DbAccessServiceService,deps:[HttpHelper]},
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide:SiteGuardGuard,useClass:SiteGuardGuard},
     {provide:LoggerhelperService,useClass:LoggerhelperService},
-    {provide:AppConfigService,useClass:AppConfigService,deps:[HttpClient]}
-     
+    
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddAuthTokenInterceptor,
+      multi: true
+    }     
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

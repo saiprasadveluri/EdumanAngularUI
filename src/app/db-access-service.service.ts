@@ -7,7 +7,7 @@ import { AcdYearDTO, AddStudentInfoDTO, AddStudentLanguageMapDTO, ChalanDTO, Cha
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { LoggerhelperService } from './loggerhelper.service';
 import { AddFeeMasterActionEnum, FetchTermFeeTypeEnum } from './app-role-enum.enum';
-import { AppConfigService } from './app-config.service';
+
 @Injectable({
   providedIn: 'root'
 })

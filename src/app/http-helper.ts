@@ -1,19 +1,24 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams } from "@angular/common/http";
 import {Observable, catchError, of, throwError} from 'rxjs';
 import { LoggerhelperService } from "./loggerhelper.service";
-import { AppConfigService } from "./app-config.service";
+
+import { isDevMode } from "@angular/core";
+import { ApiUrlObj } from "./app-models";
 
 //declare function ShowMessageDialog(msg:any):any;
 //declare function HideMessageDialog():any;
 export class HttpHelper {
+
+    public appConfig: ApiUrlObj|undefined;
     baseAddress:string|undefined;
 
     ComHeader:HttpHeaders|undefined;
-    constructor(private http:HttpClient,private logger:LoggerhelperService,private cfgSrv:AppConfigService)
+    constructor(private http:HttpClient,private logger:LoggerhelperService)
     {
         //this.baseAddress="http://api.bluegreenvsb.in/api/";
         //this.baseAddress="http://localhost:5000/API/";
-        //this.baseAddress="https://edumanapi.azurewebsites.net/API/"        
+        //this.baseAddress="https://edumanapi.azurewebsites.net/API/"   
+        this.loadAppConfig();          
     }
 
     public AppendHeader(name:string,value:string)
@@ -23,7 +28,7 @@ export class HttpHelper {
 
     PrepareHeaders()
     {
-        this.baseAddress=this.cfgSrv.apiBaseUrl;
+       // this.baseAddress=this.cfgSrv.apiBaseUrl;
         this.ComHeader=new HttpHeaders();
         let accessToken=localStorage.getItem("AuthToken");
         if(accessToken!=undefined)
@@ -36,7 +41,7 @@ export class HttpHelper {
     }
 
     HttpGet<T>(ctrlName:string,prms?:HttpParams):Observable<T>{
-         this.PrepareHeaders();
+         //this.PrepareHeaders();
          return this.http.get<T>(this.baseAddress+ctrlName,{
             headers:this.ComHeader,
             params:prms,          
@@ -52,7 +57,7 @@ export class HttpHelper {
     }
 
     HttpPost<T>(ctrlName:string,body:any):Observable<T>{
-        this.PrepareHeaders();
+       console.log("From HttpPOst: "+this.baseAddress+ctrlName);
         return this.http.post<T>(this.baseAddress+ctrlName,
             body,
             {
@@ -69,7 +74,7 @@ export class HttpHelper {
     }
 
     HttpPut<T>(ctrlName:string,body:any,hdrs?:HttpHeaders):Observable<T>{
-        this.PrepareHeaders();
+        //this.PrepareHeaders();
         var frmData:FormData=new FormData();
         
         return this.http.put<T>(this.baseAddress+ctrlName,
@@ -89,7 +94,7 @@ export class HttpHelper {
 
     HttpDelete<T>(ctrlName:string,qparam:string,recId:string):Observable<T>
     {
-        this.PrepareHeaders();
+        //this.PrepareHeaders();
         let url=this.baseAddress+ctrlName+"?"+qparam+"="+recId;
         return this.http.delete<T>(url,            
             {
@@ -104,4 +109,24 @@ export class HttpHelper {
                 return of();
             }));
     }
+
+    loadAppConfig()
+  {
+    let appSettingFilePath="";
+    console.log('from LoadCOnfig');
+    if(isDevMode())
+    {
+      appSettingFilePath="./assets/app-settings.json";
+    }
+    else
+    {
+      appSettingFilePath="./assets/app-settings.production.json";
+    }
+    this.http.get<ApiUrlObj>(appSettingFilePath).subscribe(cfg=>{
+    this.appConfig=cfg;
+    this.baseAddress=this.appConfig!.apiBaseUrl;
+    console.log("from Load config Http Req: "+JSON.stringify(cfg));
+    console.log("from Load config Http Req: "+JSON.stringify( this.appConfig));
+   });   
+  }
 }
