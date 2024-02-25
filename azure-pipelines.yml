@@ -27,11 +27,11 @@ steps:
     npm install
     ng build --configuration development
   displayName: 'npm install and build'
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(8a3b78c6-763c-4944-bd45-8e942e25f327)'
-    appType: 'webAppLinux'
-    appName: 'EdumanAngularWebUI'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    runtimeStack: 'NODE|18-lts'
-    startUpCommand: 'ng serve'
+    appType: 'webApp'
+    WebAppName: 'EdumanAngularWebUI'
+    VirtualApplication: 'EdumanAngularWebUI'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
