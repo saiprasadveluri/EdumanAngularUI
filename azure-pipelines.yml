@@ -25,7 +25,7 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --configuration development
+    ng build --configuration development -op dist
   displayName: 'npm install and build'
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -34,4 +34,4 @@ steps:
     appType: 'webApp'
     WebAppName: 'EdumanAngularWebUI'
     VirtualApplication: 'EdumanAngularWebUI'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/dist/*.*'
