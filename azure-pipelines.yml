@@ -31,7 +31,7 @@ steps:
   inputs:
     azureSubscription: 'Azure subscription 1(8a3b78c6-763c-4944-bd45-8e942e25f327)'
     appType: 'webAppLinux'
-    appName: 'EdumanAngularUI'
+    appName: 'EdumanAngularWebUI'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     runtimeStack: 'NODE|18-lts'
     startUpCommand: 'ng serve'
