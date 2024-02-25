@@ -1,5 +1,6 @@
 # Node.js with Angular
 
+
 # Build a Node.js project that uses Angular.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
@@ -26,3 +27,11 @@ steps:
     npm install
     ng build --configuration development
   displayName: 'npm install and build'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(8a3b78c6-763c-4944-bd45-8e942e25f327)'
+    appType: 'webAppLinux'
+    appName: 'EdumanAngularUI'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    runtimeStack: 'NODE|18-lts'
+    startUpCommand: 'ng serve'
